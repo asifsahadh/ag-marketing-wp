@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+:root {
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #111;
+}
+
+/* Custom utilities matching app's design language */
+.neo-shadow {
+  box-shadow: 4px 4px 0px rgba(0,0,0,1);
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px rgba(0,0,0,1);
+}
+
+/* Click effects */
+button.neo-shadow:active:not(:disabled),
+a.neo-shadow:active {
+  box-shadow: 1px 1px 0px rgba(0,0,0,1);
+  transform: translate(3px, 3px);
+}
+
+button.neo-shadow-sm:active:not(:disabled),
+a.neo-shadow-sm:active {
+  box-shadow: 1px 1px 0px rgba(0,0,0,1);
+  transform: translate(1px, 1px);
+}
+
+/* Ensure navbar transitions look clean and stable */
+nav, footer {
+  background-color: #ffffff;
+}
