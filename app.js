@@ -46,6 +46,25 @@ function setFormMode(mode) {
     }
 }
 
+function setupPasswordToggle() {
+    const toggleButton = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password-input');
+    const toggleIcon = document.getElementById('toggle-password-icon');
+
+    if (!toggleButton || !passwordInput || !toggleIcon) return;
+
+    toggleButton.addEventListener('click', () => {
+        const isHidden = passwordInput.type === 'password';
+        passwordInput.type = isHidden ? 'text' : 'password';
+        toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        toggleButton.setAttribute('aria-pressed', String(isHidden));
+
+        toggleIcon.innerHTML = isHidden
+            ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 12s3.5-6.5 9.75-6.5S21.75 12 21.75 12s-3.5 6.5-9.75 6.5S2.25 12 2.25 12Z"></path><circle cx="12" cy="12" r="2.3" stroke="currentColor" stroke-width="1.5" fill="none"></circle>'
+            : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 12s3.5-6.5 9.75-6.5S21.75 12 21.75 12s-3.5 6.5-9.75 6.5S2.25 12 2.25 12Z"></path><circle cx="12" cy="12" r="2.3" stroke="currentColor" stroke-width="1.5" fill="none"></circle>';
+    });
+}
+
 function showError(message) {
     const errorDiv = document.getElementById('auth-error');
     const successDiv = document.getElementById('auth-success');
@@ -152,6 +171,8 @@ async function handleAuthSubmit(event) {
 
 // Check if already authenticated on page load
 document.addEventListener('DOMContentLoaded', async () => {
+    setupPasswordToggle();
+
     try {
         const response = await fetch('/api/me', { credentials: 'include' });
         if (response.ok) {
