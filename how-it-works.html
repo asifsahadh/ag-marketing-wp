@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow | autograder.</title>
+    <link rel="icon" href="favicon-new-pre-removebg.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#f8f9fa] text-black antialiased flex flex-col min-h-screen">
+
+    <!-- Full-Width Navbar -->
+    <nav class="border-b-2 border-black bg-white px-6 py-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex flex-row justify-between items-center gap-4">
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="logo-2.png" alt="Autograder logo" class="w-8 h-8 object-cover border border-black" />
+                <span class="font-black lowercase tracking-tight text-lg">autograder.</span>
+            </a>
+            <!-- Desktop Nav -->
+            <div class="hidden sm:flex items-center gap-4 sm:gap-6 font-bold uppercase text-xs tracking-wider">
+                <a href="index.html" class="hover:text-blue-600 transition-colors whitespace-nowrap">Overview</a>
+                <a href="how-it-works.html" class="text-blue-600 transition-colors whitespace-nowrap">Workflow</a>
+                <a href="pricing.html" class="hover:text-blue-600 transition-colors whitespace-nowrap">Pricing</a>
+                <a href="coming-soon.html"
+                    class="bg-blue-600 text-white px-4 py-2 border-2 border-black neo-shadow-sm hover:bg-blue-700 transition-colors whitespace-nowrap">
+                    Login
+                </a>
+            </div>
+            <!-- Mobile Hamburger -->
+            <button id="menu-btn" onclick="toggleMenu()" class="sm:hidden flex flex-col gap-1.5 p-1 focus:outline-none" aria-label="Toggle menu">
+                <span id="bar1" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+                <span id="bar2" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+                <span id="bar3" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+            </button>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden sm:hidden border-t-2 border-black mt-4 -mx-6 -mb-4">
+            <a href="index.html" class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black hover:text-blue-600 hover:bg-gray-50 transition-colors">Overview</a>
+            <a href="how-it-works.html" class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black text-blue-600 bg-gray-50">Workflow</a>
+            <a href="pricing.html" class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black hover:text-blue-600 hover:bg-gray-50 transition-colors">Pricing</a>
+            <div class="px-6 py-4">
+                <a href="coming-soon.html" class="block w-full text-center bg-blue-600 text-white font-bold uppercase text-xs tracking-wider py-3 border-2 border-black hover:bg-blue-700 transition-colors">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Center-Focused Content Container -->
+    <main class="flex-1 max-w-3xl w-full mx-auto px-6 py-16 sm:py-24 space-y-20">
+
+        <!-- Hero + Accurate Evaluation Section -->
+        <section class="space-y-12">
+            <div class="space-y-3">
+                <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight leading-none">
+                    Features & Workflow
+                </h1>
+                <p class="text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
+                    From handwritten answer sheets to feedback reports, see how autograder automates and assists the
+                    grading
+                    process.
+                </p>
+            </div>
+
+            <!-- Box 1: Math Evaluation Demo -->
+            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
+                <img src="for-show/math.jpg" alt="Handwritten Math Solution"
+                    class="w-full border-2 border-black rounded-none">
+
+                <!-- Interactive Button for Math Evaluation -->
+                <button id="btn-eval" onclick="runDemo('eval')"
+                    class="w-full py-3 bg-blue-600 text-white font-bold uppercase tracking-wider text-xs border-2 border-black neo-shadow-sm hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                    Run Autograder Evaluation
+                </button>
+
+                <!-- Hidden Result Box revealed after 7s -->
+                <div id="result-eval"
+                    class="hidden text-xs text-gray-700 font-medium leading-relaxed bg-gray-50 p-4 border-2 border-black">
+                    <b>Incorrect solution.</b> In step 1, dividing y(1+x) dy/dx = x + y² by y incorrectly yields
+                    (1+x) dy/dx = x/y + y (the student omitted y from the x term denominator). Furthermore, the
+                    separation of variables in step 3 incorrectly places y terms inside x-integrals, rendering the
+                    subsequent integration and final answer invalid.
+                </div>
+            </div>
+
+            <!-- Box 2: Handwriting Recognition Demo -->
+            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
+                <img src="for-show/handwriting.jpg" alt="Handwritten Essay"
+                    class="w-full border-2 border-black rounded-none">
+
+                <!-- Interactive Button for OCR -->
+                <button id="btn-ocr" onclick="runDemo('ocr')"
+                    class="w-full py-3 bg-blue-600 text-white font-bold uppercase tracking-wider text-xs border-2 border-black neo-shadow-sm hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                    Run Autograder OCR
+                </button>
+
+                <!-- Hidden Result Box revealed after 4s -->
+                <div id="result-ocr"
+                    class="hidden text-xs text-gray-700 font-medium italic leading-relaxed bg-gray-50 p-4 border-2 border-black">
+                    Farming in India<br><br>
+                    Farming is a very important part of India. It provides food to millions of people and
+                    supports our economy. Many people in rural areas depend on farming for their livelihood.<br><br>
+                    However, farmers face many problems like lack of water, poor soil, and unpredictable
+                    weather. Prices of crops are also not stable. We better technology and government
+                    support to help farmers and improve farming in our country.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Flowchart: How Autograder Works -->
+        <section class="space-y-8">
+            <div class="border-b-2 border-black pb-2">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">How Autograder Works</h2>
+            </div>
+
+            <div class="flex flex-col items-center gap-3.5 pt-3">
+                <!-- Step 1: Inputs with Plus Signs -->
+                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+                    <div
+                        class="flex-1 w-full bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
+                        <div class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+                                stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="8" y1="13" x2="16" y2="13"></line>
+                                <line x1="8" y1="17" x2="16" y2="17"></line>
+                            </svg>
+                        </div>
+                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Question Paper</p>
+                    </div>
+
+                    <div class="font-black text-xl text-black flex items-center justify-center px-1 py-1 sm:py-0">+
+                    </div>
+
+                    <div
+                        class="flex-1 w-full bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
+                        <div class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+                                stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="8" y1="13" x2="16" y2="13"></line>
+                                <line x1="8" y1="17" x2="16" y2="17"></line>
+                            </svg>
+                        </div>
+                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Answer Sheet</p>
+                    </div>
+
+                    <div class="font-black text-xl text-black flex items-center justify-center px-1 py-1 sm:py-0">+
+                    </div>
+
+                    <div
+                        class="flex-1 w-full bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
+                        <div class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+                                stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="8" y1="13" x2="16" y2="13"></line>
+                                <line x1="8" y1="17" x2="16" y2="17"></line>
+                            </svg>
+                        </div>
+                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Rubric & Reference</p>
+                    </div>
+                </div>
+
+                <!-- Single Down Arrow directly below answer sheet / inputs -->
+                <div class="flex justify-center py-1">
+                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
+                        stroke-linecap="square" stroke-linejoin="miter">
+                        <line x1="12" y1="0" x2="12" y2="20"></line>
+                        <polyline points="6 14 12 20 18 14"></polyline>
+                    </svg>
+                </div>
+
+                <!-- Step 2: Extracted Text Data -->
+                <div class="w-full bg-white border-2 border-black p-4 flex items-center gap-4">
+                    <div class="w-13 h-13 flex-shrink-0 bg-black flex items-center justify-center p-3">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            stroke-linecap="square" stroke-linejoin="miter">
+                            <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                            <line x1="9" y1="20" x2="15" y2="20"></line>
+                            <line x1="12" y1="4" x2="12" y2="20"></line>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold uppercase tracking-tight text-sm">Text Data Extraction</h3>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">OCR Processing
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Down Arrow -->
+                <div class="flex justify-center py-1">
+                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
+                        stroke-linecap="square" stroke-linejoin="miter">
+                        <line x1="12" y1="0" x2="12" y2="20"></line>
+                        <polyline points="6 14 12 20 18 14"></polyline>
+                    </svg>
+                </div>
+
+                <!-- Step 3: Autograder Evaluation (Solid Brand Blue) -->
+                <div class="w-full bg-blue-600 border-2 border-black p-4 flex items-center gap-4">
+                    <div
+                        class="w-13 h-13 flex-shrink-0 bg-white border-2 border-black flex items-center justify-center p-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+                            stroke-linecap="square" stroke-linejoin="miter">
+                            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                            <circle cx="12" cy="5" r="2"></circle>
+                            <path d="M12 7v4"></path>
+                            <line x1="8" y1="16" x2="8" y2="16"></line>
+                            <line x1="16" y1="16" x2="16" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold uppercase tracking-tight text-sm text-white">Autograder Evaluation</h3>
+                        <p class="text-[10px] text-blue-100 font-bold uppercase tracking-wider mt-0.5">Rubric Matching
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Down Arrow -->
+                <div class="flex justify-center py-1">
+                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
+                        stroke-linecap="square" stroke-linejoin="miter">
+                        <line x1="12" y1="0" x2="12" y2="20"></line>
+                        <polyline points="6 14 12 20 18 14"></polyline>
+                    </svg>
+                </div>
+
+                <!-- Step 4: Final Report -->
+                <div class="w-full bg-white border-2 border-black p-4 flex items-center gap-4">
+                    <div class="w-13 h-13 flex-shrink-0 bg-black flex items-center justify-center p-3">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            stroke-linecap="square" stroke-linejoin="miter">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <path d="M9 15l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold uppercase tracking-tight text-sm">Feedback Report</h3>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Graded Results
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Full-Width Footer -->
+    <footer class="border-t-2 border-black bg-white py-12 px-6">
+        <div
+            class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left text-xs font-bold text-gray-500">
+            <span class="hidden sm:inline">autograder.</span>
+            <span>HANDCRAFTED FOR EDUCATORS • 2026</span>
+        </div>
+    </footer>
+
+    <script>
+        function runDemo(type) {
+            const spinnerSvg = `<svg class="animate-spin h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+            if (type === 'eval') {
+                const btn = document.getElementById('btn-eval');
+                const result = document.getElementById('result-eval');
+                if (!btn || !result) return;
+                btn.disabled = true;
+                btn.innerHTML = `${spinnerSvg} Extracting data...`;
+                setTimeout(() => {
+                    btn.innerHTML = `${spinnerSvg} Evaluating...`;
+                }, 2000);
+                setTimeout(() => {
+                    btn.classList.add('hidden');
+                    result.classList.remove('hidden');
+                }, 7000);
+            } else if (type === 'ocr') {
+                const btn = document.getElementById('btn-ocr');
+                const result = document.getElementById('result-ocr');
+                if (!btn || !result) return;
+                btn.disabled = true;
+                btn.innerHTML = `${spinnerSvg} Extracting data...`;
+                setTimeout(() => {
+                    btn.classList.add('hidden');
+                    result.classList.remove('hidden');
+                }, 4000);
+            }
+        }
+    </script>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                bar1.style.transform = '';
+                bar2.style.opacity = '1';
+                bar3.style.transform = '';
+            } else {
+                menu.classList.remove('hidden');
+                bar1.style.transform = 'translateY(8px) rotate(45deg)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
+    </script>
+</body>
+
+</html>
