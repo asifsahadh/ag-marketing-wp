@@ -8,45 +8,55 @@
     <link rel="icon" href="favicon-new-pre-removebg.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px) scale(0.98) rotate(-1deg);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1) rotate(0deg);
-        }
-    </style>
 </head>
 
-<body class="bg-[#f8f9fa] text-black antialiased">
+<body class="bg-[#f8f9fa] text-black antialiased flex flex-col min-h-screen">
 
     <!-- Full-Width Navbar -->
-    <nav class="border-b-2 border-black bg-white px-6 py-4">
+    <nav class="border-b-2 border-black bg-white px-6 py-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-2 flex-shrink-0">
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
                 <img src="logo-2.png" alt="Autograder logo" class="w-8 h-8 object-cover border border-black" />
                 <span class="font-black lowercase tracking-tight text-lg">autograder.</span>
-            </div>
-            <div class="flex items-center gap-4 font-bold uppercase text-xs tracking-wider">
-                <a href="#pricing" class="hover:text-blue-600 transition-colors whitespace-nowrap">Pricing</a>
+            </a>
+            <!-- Desktop Nav -->
+            <div class="hidden sm:flex items-center gap-4 sm:gap-6 font-bold uppercase text-xs tracking-wider">
+                <a href="index.html" class="text-blue-600 transition-colors whitespace-nowrap">Overview</a>
+                <a href="how-it-works.html" class="hover:text-blue-600 transition-colors whitespace-nowrap">Workflow</a>
+                <a href="pricing.html" class="hover:text-blue-600 transition-colors whitespace-nowrap">Pricing</a>
                 <a href="coming-soon.html"
                     class="bg-blue-600 text-white px-4 py-2 border-2 border-black neo-shadow-sm hover:bg-blue-700 transition-colors whitespace-nowrap">
                     Login
                 </a>
             </div>
+            <!-- Mobile Hamburger -->
+            <button id="menu-btn" onclick="toggleMenu()" class="sm:hidden flex flex-col gap-1.5 p-1 focus:outline-none"
+                aria-label="Toggle menu">
+                <span id="bar1" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+                <span id="bar2" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+                <span id="bar3" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
+            </button>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden sm:hidden border-t-2 border-black mt-4 -mx-6 -mb-4">
+            <a href="index.html"
+                class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black text-blue-600 bg-gray-50">Overview</a>
+            <a href="how-it-works.html"
+                class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black hover:text-blue-600 hover:bg-gray-50 transition-colors">Workflow</a>
+            <a href="pricing.html"
+                class="block px-6 py-4 font-bold uppercase text-xs tracking-wider border-b-2 border-black hover:text-blue-600 hover:bg-gray-50 transition-colors">Pricing</a>
+            <div class="px-6 py-4">
+                <a href="coming-soon.html"
+                    class="block w-full text-center bg-blue-600 text-white font-bold uppercase text-xs tracking-wider py-3 border-2 border-black hover:bg-blue-700 transition-colors">Login</a>
+            </div>
         </div>
     </nav>
 
     <!-- Center-Focused Content Container -->
-    <main class="max-w-3xl mx-auto px-6 py-16 sm:py-24 space-y-20">
+    <main class="flex-1 max-w-3xl w-full mx-auto px-6 py-16 sm:py-24 space-y-20">
 
         <!-- Hero Section -->
-        <section class="space-y-6 reveal active">
+        <section class="space-y-6">
             <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight leading-none">
                 Automated Grading <br>
                 For Handwritten Exams.
@@ -55,42 +65,35 @@
                 A tool built for educators. Let AI handle the first pass of grading so you can focus on meaningful
                 feedback, not paperwork.
             </p>
-            <div class="pt-2">
-                <a href="coming-soon.html" id="hero-cta"
-                    class="inline-block bg-blue-600 text-white font-bold uppercase tracking-wider py-4 px-8 border-2 border-black neo-shadow hover:bg-blue-700 transition-all text-sm">
-                    Get Started
-                </a>
-            </div>
         </section>
 
         <!-- Manual Grading Facts -->
-        <section class="space-y-8 reveal">
+        <section class="space-y-8">
             <div class="border-b-2 border-black pb-2">
                 <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Manual Grading is Tedious</h2>
             </div>
 
             <div class="bg-white border-2 border-black p-6 neo-shadow-sm space-y-5">
                 <p class="text-sm font-bold leading-relaxed">
-                    Providing detailed feedback on a single student essay typically takes <span
-                        class="text-[#D22B2B]">7-10 minutes</span>.
-                    For a class of 30 students, that's <span class="text-[#D22B2B]">3.5-5 hours</span> spent
-                    grading just
-                    one assignment.
+                    In a measured study, it was found that providing comprehensive feedback for one essay takes
+                    <span class="text-[#D22B2B]">9 minutes</span>
+                    <span class="text-[#D22B2B]">40 seconds</span>.
+                    For a class of 30 students, that's approximately <span class="text-[#D22B2B]">4.8 hours</span> of
+                    manual grading.
                 </p>
                 <div
                     class="border-t border-gray-300 pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <p class="text-[10px] font-bold text-gray-400 tracking-wider">
-                        Source: <a href="https://automark.io/blog/grade-smarter-faster?" target="_blank"
-                            rel="noopener noreferrer" class="underline hover:text-gray-600">AutoMark Blog - How to Grade
-                            Essays Faster Without Sacrificing Quality</a> (cites a 2022 study in the Journal of
-                        Educational Psychology)
+                        Source: <a href="https://link.springer.com/article/10.1007/s11145-025-10638-8" target="_blank"
+                            rel="noopener noreferrer" class="underline hover:text-gray-600">Peltzer et
+                            al., Reading and Writing (2025/2026)</a>
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Core Capabilities (Simple panels) -->
-        <section class="space-y-8 reveal">
+        <!-- Core Capabilities -->
+        <section class="space-y-8">
             <div class="border-b-2 border-black pb-2">
                 <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Autograder Core Capabilities</h2>
             </div>
@@ -114,7 +117,7 @@
                     </p>
                 </div>
 
-                <!-- PDF Export -->
+                <!-- Feedback Reports -->
                 <div class="bg-white border-2 border-black p-5 neo-shadow-sm">
                     <h3 class="font-bold text-base mb-1">Feedback Reports</h3>
                     <p class="text-xs text-gray-600 leading-relaxed font-medium">
@@ -124,270 +127,8 @@
             </div>
         </section>
 
-        <!-- How Autograder Works (Flow of Operations) -->
-        <section class="space-y-8 reveal">
-            <div class="border-b-2 border-black pb-2">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">How Autograder Works</h2>
-            </div>
-
-            <div class="flex flex-col items-center gap-3.5 pt-3">
-                <!-- Step 1: Inputs -->
-                <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-14">
-                    <div
-                        class="bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
-                        <div
-                            class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                                stroke-linecap="square" stroke-linejoin="miter">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="8" y1="13" x2="16" y2="13"></line>
-                                <line x1="8" y1="17" x2="16" y2="17"></line>
-                            </svg>
-                        </div>
-                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Question Paper</p>
-                    </div>
-
-                    <div
-                        class="bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
-                        <div
-                            class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                                stroke-linecap="square" stroke-linejoin="miter">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="8" y1="13" x2="16" y2="13"></line>
-                                <line x1="8" y1="17" x2="16" y2="17"></line>
-                            </svg>
-                        </div>
-                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Answer Sheet</p>
-                    </div>
-
-                    <div
-                        class="bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
-                        <div
-                            class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                                stroke-linecap="square" stroke-linejoin="miter">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="8" y1="13" x2="16" y2="13"></line>
-                                <line x1="8" y1="17" x2="16" y2="17"></line>
-                            </svg>
-                        </div>
-                        <p class="font-bold uppercase tracking-wider text-[11px] text-center">Rubric & Reference</p>
-                    </div>
-                </div>
-
-                <!-- Down Arrow on Mobile -->
-                <div class="flex justify-center py-1 sm:hidden">
-                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
-                        stroke-linecap="square" stroke-linejoin="miter">
-                        <line x1="12" y1="0" x2="12" y2="20"></line>
-                        <polyline points="6 14 12 20 18 14"></polyline>
-                    </svg>
-                </div>
-
-                <!-- Arrows from 3 inputs converging on Desktop -->
-                <div class="hidden sm:grid w-full grid-cols-3 gap-14 py-1">
-                    <!-- Left Arrow: points down and right towards center -->
-                    <div class="flex justify-end pr-6">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <line x1="4" y1="2" x2="20" y2="20"></line>
-                            <polyline points="10 20 20 20 20 10"></polyline>
-                        </svg>
-                    </div>
-                    <!-- Center Arrow: points straight down -->
-                    <div class="flex justify-center">
-                        <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <line x1="12" y1="0" x2="12" y2="20"></line>
-                            <polyline points="6 14 12 20 18 14"></polyline>
-                        </svg>
-                    </div>
-                    <!-- Right Arrow: points down and left towards center -->
-                    <div class="flex justify-start pl-6">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <line x1="20" y1="2" x2="4" y2="20"></line>
-                            <polyline points="4 10 4 20 14 20"></polyline>
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Step 2: Extracted Text Data -->
-                <div class="w-full bg-white border-2 border-black p-4 flex items-center gap-4">
-                    <div class="w-13 h-13 flex-shrink-0 bg-black flex items-center justify-center p-3">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <polyline points="4 7 4 4 20 4 20 7"></polyline>
-                            <line x1="9" y1="20" x2="15" y2="20"></line>
-                            <line x1="12" y1="4" x2="12" y2="20"></line>
-                        </svg>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold uppercase tracking-tight text-sm">Text Data Extraction</h3>
-                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">OCR Processing
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Down Arrow -->
-                <div class="flex justify-center py-1">
-                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
-                        stroke-linecap="square" stroke-linejoin="miter">
-                        <line x1="12" y1="0" x2="12" y2="20"></line>
-                        <polyline points="6 14 12 20 18 14"></polyline>
-                    </svg>
-                </div>
-
-                <!-- Step 3: Autograder Evaluation -->
-                <div class="w-full bg-gradient-to-r from-blue-600 to-black border-2 border-black p-4 flex items-center gap-4">
-                    <div
-                        class="w-13 h-13 flex-shrink-0 bg-white border-2 border-black flex items-center justify-center p-3">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                            <circle cx="12" cy="5" r="2"></circle>
-                            <path d="M12 7v4"></path>
-                            <line x1="8" y1="16" x2="8" y2="16"></line>
-                            <line x1="16" y1="16" x2="16" y2="16"></line>
-                        </svg>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold uppercase tracking-tight text-sm text-white">Autograder Evaluation</h3>
-                        <p class="text-[10px] text-blue-100 font-bold uppercase tracking-wider mt-0.5">Rubric Matching
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Down Arrow -->
-                <div class="flex justify-center py-1">
-                    <svg width="22" height="22" viewBox="0 0 24 22" fill="none" stroke="black" stroke-width="2"
-                        stroke-linecap="square" stroke-linejoin="miter">
-                        <line x1="12" y1="0" x2="12" y2="20"></line>
-                        <polyline points="6 14 12 20 18 14"></polyline>
-                    </svg>
-                </div>
-
-                <!-- Step 4: Final Report -->
-                <div class="w-full bg-white border-2 border-black p-4 flex items-center gap-4">
-                    <div class="w-13 h-13 flex-shrink-0 bg-black flex items-center justify-center p-3">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                            stroke-linecap="square" stroke-linejoin="miter">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <path d="M9 15l2 2 4-4"></path>
-                        </svg>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold uppercase tracking-tight text-sm">Feedback Report</h3>
-                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Graded Results
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Handwriting Recognition Section
-        <section class="space-y-8 reveal">
-            <div class="border-b-2 border-black pb-2">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Accurate Handwriting Recognition
-                </h2>
-            </div>
-
-            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-3">
-                <img src="for-show/science.png" alt="Handwritten Science Notes"
-                    class="w-full border-2 border-black rounded-none">
-                <div class="text-xs text-gray-700 font-medium leading-relaxed">
-                    <span class="font-bold text-black uppercase tracking-wider block mb-1">Extracted Text:</span>
-                    Mitochondria<br>
-                    - Mitochondria are membrane bound organelles found in eukaryotic cells.<br>
-                    - They are known as the "powerhouse of the cell".<br>
-                    - Site of aerobic respiration, where glucose is broken down to produce ATP.<br>
-                    - They have a double membrane - outer membrane is smooth and inner membrane is folded into cristae.
-                </div>
-            </div>
-        </section> -->
-
-        <!-- Accurate Evaluation & Handwriting Recognition -->
-        <section class="space-y-8 reveal">
-            <div class="border-b-2 border-black pb-2">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Accurate Evaluation & Handwriting
-                    Recognition</h2>
-            </div>
-
-            <!-- Box 1: Math -->
-            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-3">
-                <img src="for-show/math.jpg" alt="Handwritten Math Solution"
-                    class="w-full border-2 border-black rounded-none">
-                <div class="text-xs text-gray-700 font-medium leading-relaxed">
-                    <span class="font-bold text-black uppercase tracking-wider block mb-1">Autograder Evaluation:</span>
-                    Incorrect solution. In step 1, dividing y(1+x) dy/dx = x + y² by y incorrectly yields
-                    (1+x) dy/dx = x/y + y (the student omitted y from the x term denominator). Furthermore, the
-                    separation of variables in step 3 incorrectly places y terms inside x-integrals, rendering the
-                    subsequent integration and final answer invalid.
-                </div>
-            </div>
-
-            <!-- Box 2: Handwriting Recognition -->
-            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-3">
-                <img src="for-show/handwriting.jpg" alt="Handwritten Essay"
-                    class="w-full border-2 border-black rounded-none">
-                <div class="text-xs text-gray-700 font-medium leading-relaxed">
-                    <span class="font-bold text-black uppercase tracking-wider block mb-1">Autograder Handwriting
-                        Recognition:</span>
-                    Farming in India<br>
-                    Farming is a very important part of India. It provides food to millions of people and
-                    supports our economy. Many people in rural areas depend on farming for their
-                    livelihood.<br>
-                    However, farmers face many problems like lack of water, poor soil, and unpredictable
-                    weather. Prices of crops are also not stable. We better technology and government
-                    support to help farmers and improve farming in our country.
-                </div>
-            </div>
-        </section>
-
-        <!-- Speed Comparison — temporarily hidden, will update with real metrics
-        <section class="space-y-8 reveal">
-            <div class="border-b-2 border-black pb-2">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Speed Comparison</h2>
-            </div>
-
-            <div class="bg-white border-2 border-black p-6 neo-shadow-sm space-y-5">
-                <div>
-                    <div class="flex justify-between items-baseline mb-1.5">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Manual Grading</span>
-                        <span class="text-sm font-black">7–10 min <span class="text-[10px] font-bold text-gray-400">/ paper</span></span>
-                    </div>
-                    <div class="w-full h-6 bg-gray-100 border border-black relative">
-                        <div class="h-full bg-black transition-all duration-700" style="width: 93%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-baseline mb-1.5">
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">AutoGrader</span>
-                        <span class="text-sm font-black text-blue-600">&lt; 30 sec <span class="text-[10px] font-bold text-blue-400">/ paper</span></span>
-                    </div>
-                    <div class="w-full h-6 bg-gray-100 border border-black relative">
-                        <div class="h-full bg-blue-600 transition-all duration-700" style="width: 7%;"></div>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-300 pt-4 text-center">
-                    <p class="text-xs font-bold">
-                        AutoGrader is <span class="text-blue-600">14–20× faster</span> than manual evaluation
-                    </p>
-                </div>
-            </div>
-        </section>
-        -->
-
         <!-- Autograder vs Manual Grading -->
-        <section class="space-y-8 reveal">
+        <section class="space-y-8">
             <div class="border-b-2 border-black pb-2">
                 <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Autograder vs Manual Grading</h2>
             </div>
@@ -423,71 +164,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section class="space-y-8 reveal" id="pricing">
-            <div class="border-b-2 border-black pb-2">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Pricing Plans</h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
-                <!-- Free -->
-                <div class="bg-white border-2 border-black p-6 neo-shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-sm uppercase text-gray-500 mb-1">Free Trial</h3>
-                        <div class="text-3xl font-black mb-3">₹0</div>
-                        <p class="text-xs text-gray-600 font-medium mb-6">Perfect for testing the waters first.</p>
-                        <ul class="text-left space-y-2 text-[11px] font-bold text-gray-500 mb-6">
-                            <li>• 1 Grading Session</li>
-                            <li>• 2 Students</li>
-                            <!-- <li>• Full AI evaluation</li> -->
-                        </ul>
-                    </div>
-                    <a href="coming-soon.html"
-                        class="w-full text-center py-2.5 bg-white text-black border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-white transition-colors">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Pay-Per-Use -->
-                <div class="bg-white border-2 border-black p-6 neo-shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-sm uppercase text-gray-500 mb-1">Pay-Per-Use Pack</h3>
-                        <div class="text-3xl font-black mb-3">₹99</div>
-                        <p class="text-xs text-gray-600 font-medium mb-6">For occasional grading needs.</p>
-                        <ul class="text-left space-y-2 text-[11px] font-bold text-gray-500 mb-6">
-                            <li>• 2 Grading Sessions</li>
-                            <li>• Multiple students per session</li>
-                            <!-- <li>• No expiry on sessions</li> -->
-                        </ul>
-                    </div>
-                    <a href="coming-soon.html"
-                        class="w-full text-center py-2.5 bg-blue-600 text-white border-2 border-black font-bold uppercase text-xs hover:bg-blue-700 transition-colors">
-                        Buy Now
-                    </a>
-                </div>
-
-                <!-- Monthly Pro -->
-                <div
-                    class="bg-white border-2 border-black p-6 neo-shadow flex flex-col justify-between relative overflow-hidden">
-                    <div>
-                        <h3 class="font-bold text-sm uppercase text-blue-600 mb-1">Monthly Pro</h3>
-                        <div class="text-3xl font-black mb-3">₹1,499<span class="text-xs text-gray-400 font-bold"> /
-                                month</span></div>
-                        <p class="text-xs text-gray-600 font-medium mb-6">For educators who grade papers regularly.</p>
-                        <ul class="text-left space-y-2 text-[11px] font-bold text-gray-500 mb-6">
-                            <li>• Unlimited Sessions</li>
-                            <li>• Unlimited Students</li>
-                            <!-- <li>• Recurring monthly billing</li> -->
-                        </ul>
-                    </div>
-                    <a href="coming-soon.html"
-                        class="w-full text-center py-2.5 bg-blue-600 text-white border-2 border-black font-bold uppercase text-xs hover:bg-blue-700 transition-colors">
-                        Subscribe
-                    </a>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- Full-Width Footer -->
@@ -498,27 +174,25 @@
             <span>HANDCRAFTED FOR EDUCATORS • 2026</span>
         </div>
     </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Intersection Observer for scroll animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            });
-
-            document.querySelectorAll('.reveal').forEach((el) => {
-                if (!el.classList.contains('active')) {
-                    observer.observe(el);
-                }
-            });
-        });
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                bar1.style.transform = '';
+                bar2.style.opacity = '1';
+                bar3.style.transform = '';
+            } else {
+                menu.classList.remove('hidden');
+                bar1.style.transform = 'translateY(8px) rotate(45deg)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
     </script>
 </body>
 
