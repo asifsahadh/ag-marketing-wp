@@ -70,8 +70,11 @@
 
             <!-- Box 1: Math Evaluation Demo -->
             <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
-                <img src="for-show/math.jpg" alt="Handwritten Math Solution"
-                    class="w-full border-2 border-black rounded-none">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="for-show/math-sq.jpg">
+                    <img src="for-show/math.jpg" alt="Handwritten Math Solution"
+                        class="w-full border-2 border-black rounded-none">
+                </picture>
 
                 <!-- Interactive Button for Math Evaluation -->
                 <button id="btn-eval" onclick="runDemo('eval')"
@@ -91,8 +94,11 @@
 
             <!-- Box 2: Handwriting Recognition Demo -->
             <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
-                <img src="for-show/handwriting.jpg" alt="Handwritten Essay"
-                    class="w-full border-2 border-black rounded-none">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="for-show/handwriting-sq.jpg">
+                    <img src="for-show/handwriting.jpg" alt="Handwritten Essay"
+                        class="w-full border-2 border-black rounded-none">
+                </picture>
 
                 <!-- Interactive Button for OCR -->
                 <button id="btn-ocr" onclick="runDemo('ocr')"
@@ -258,7 +264,7 @@
         <!-- Try Autograder -->
         <section class="text-center">
             <a href="pricing.html"
-                class="text-xs font-bold uppercase tracking-widest text-black underline underline-offset-4 hover:text-blue-600 hover:no-underline transition-colors">
+                class="text-xs font-bold uppercase tracking-widest underline underline-offset-4 text-blue-600 hover:text-black hover:no-underline transition-colors">
                 Try Autograder
             </a>
         </section>
@@ -285,11 +291,11 @@
                 btn.innerHTML = `${spinnerSvg} Extracting data...`;
                 setTimeout(() => {
                     btn.innerHTML = `${spinnerSvg} Evaluating...`;
-                }, 2000);
+                }, 3000);
                 setTimeout(() => {
                     btn.classList.add('hidden');
                     result.classList.remove('hidden');
-                }, 7000);
+                }, 6000);
             } else if (type === 'ocr') {
                 const btn = document.getElementById('btn-ocr');
                 const result = document.getElementById('result-ocr');
