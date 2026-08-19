@@ -19,6 +19,7 @@
                 <img src="logo-2.png" alt="Autograder logo" class="w-8 h-8 object-cover border border-black" />
                 <span class="font-black lowercase tracking-tight text-lg">autograder.</span>
             </a>
+
             <!-- Desktop Nav -->
             <div class="hidden sm:flex items-center gap-4 sm:gap-6 font-bold uppercase text-xs tracking-wider">
                 <a href="index.html" class="hover:text-blue-600 transition-colors whitespace-nowrap">Overview</a>
@@ -29,6 +30,7 @@
                     Login
                 </a>
             </div>
+
             <!-- Mobile Hamburger -->
             <button id="menu-btn" onclick="toggleMenu()" class="sm:hidden flex flex-col gap-1.5 p-1 focus:outline-none"
                 aria-label="Toggle menu">
@@ -37,6 +39,7 @@
                 <span id="bar3" class="block w-6 h-0.5 bg-blue-600 transition-all duration-200"></span>
             </button>
         </div>
+
         <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="hidden sm:hidden border-t-2 border-black mt-4 -mx-6 -mb-4">
             <a href="index.html"
@@ -69,8 +72,16 @@
             </div>
 
             <!-- Box 1: Math Evaluation Demo -->
-            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
-                <picture>
+            <div class="bg-white border-2 border-black px-5 pt-4 pb-5 neo-shadow-sm space-y-3">
+
+                <!-- CENTERED HEADING -->
+                <div class="py-2 flex items-center justify-center text-center">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500">
+                        Autograder Evaluation
+                    </p>
+                </div>
+
+                <picture class="block">
                     <source media="(max-width: 640px)" srcset="for-show/math-sq.jpg">
                     <img src="for-show/math.jpg" alt="Handwritten Math Solution"
                         class="w-full border-2 border-black rounded-none">
@@ -93,9 +104,17 @@
             </div>
 
             <!-- Box 2: Handwriting Recognition Demo -->
-            <div class="bg-white border-2 border-black p-5 neo-shadow-sm space-y-4">
-                <picture>
-                    <source media="(max-width: 640px)" srcset="for-show/handwriting-sq.jpg">
+            <div class="bg-white border-2 border-black px-5 pt-4 pb-5 neo-shadow-sm space-y-3">
+
+                <!-- CENTERED HEADING -->
+                <div class="py-2 flex items-center justify-center text-center">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500">
+                        Autograder Text Extraction
+                    </p>
+                </div>
+
+                <picture class="block">
+                    <source media="(max-width: 640px)" srcset="for-show/handwriting-sq.png">
                     <img src="for-show/handwriting.jpg" alt="Handwritten Essay"
                         class="w-full border-2 border-black rounded-none">
                 </picture>
@@ -126,8 +145,10 @@
             </div>
 
             <div class="flex flex-col items-center gap-3.5 pt-3">
+
                 <!-- Step 1: Inputs with Plus Signs -->
                 <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+
                     <div
                         class="flex-1 w-full bg-white border-2 border-black py-3.5 px-3 flex flex-col items-center justify-center space-y-2.5">
                         <div class="w-10 h-10 bg-gray-50 border-2 border-black flex items-center justify-center">
@@ -283,25 +304,34 @@
     <script>
         function runDemo(type) {
             const spinnerSvg = `<svg class="animate-spin h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
             if (type === 'eval') {
                 const btn = document.getElementById('btn-eval');
                 const result = document.getElementById('result-eval');
+
                 if (!btn || !result) return;
+
                 btn.disabled = true;
-                btn.innerHTML = `${spinnerSvg} Extracting data...`;
+                btn.innerHTML = `${spinnerSvg} Extracting text data`;
+
                 setTimeout(() => {
-                    btn.innerHTML = `${spinnerSvg} Evaluating...`;
+                    btn.innerHTML = `${spinnerSvg} Evaluating`;
                 }, 3000);
+
                 setTimeout(() => {
                     btn.classList.add('hidden');
                     result.classList.remove('hidden');
-                }, 6000);
+                }, 5000);
+
             } else if (type === 'ocr') {
                 const btn = document.getElementById('btn-ocr');
                 const result = document.getElementById('result-ocr');
+
                 if (!btn || !result) return;
+
                 btn.disabled = true;
-                btn.innerHTML = `${spinnerSvg} Extracting data...`;
+                btn.innerHTML = `${spinnerSvg} Extracting text data`;
+
                 setTimeout(() => {
                     btn.classList.add('hidden');
                     result.classList.remove('hidden');
@@ -309,13 +339,16 @@
             }
         }
     </script>
+
     <script>
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const bar1 = document.getElementById('bar1');
             const bar2 = document.getElementById('bar2');
             const bar3 = document.getElementById('bar3');
+
             const isOpen = !menu.classList.contains('hidden');
+
             if (isOpen) {
                 menu.classList.add('hidden');
                 bar1.style.transform = '';
@@ -329,6 +362,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>
